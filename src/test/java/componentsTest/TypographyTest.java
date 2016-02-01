@@ -12,10 +12,11 @@ import org.testng.annotations.*;
 public class TypographyTest {
 	IOSDriver driver;
 	DesiredCapabilities cap;
-	URL sauceUrl;
+	public static URL sauceUrl;
 	
 	@BeforeClass
 	public void beforeClass() throws MalformedURLException{
+		
 		final String USERNAME = System.getenv("SAUCE_USERNAME");
 		final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
 		sauceUrl = new URL("http://" + USERNAME + ":"+ ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub");
@@ -31,7 +32,7 @@ public class TypographyTest {
 	
 	@BeforeTest
 	public void setUp(){
-		driver = new IOSDriver(sauceUrl,cap);				
+		driver = new IOSDriver(sauceUrl,cap);	
 	}
 	
 	@Test
