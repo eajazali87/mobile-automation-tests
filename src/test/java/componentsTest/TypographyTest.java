@@ -40,13 +40,13 @@ public class TypographyTest {
 		
 		//Label
 		String labelColor = driver.findElement(By.id("label")).getCssValue("color");
-		Assert.assertEquals(labelColor, "rgb(35, 31, 32)");
+		Assert.assertEquals(labelColor, "rgb(35, 31, 32,1)","label font color is not as per the spec");
 		
 		//Secondary Label
 		String secLableColor = driver.findElement(By.id("label-secondary")).getCssValue("color");
-		Assert.assertEquals(secLableColor, "rgb(35, 31, 32)");		
-		
+		Assert.assertEquals(secLableColor, "rgb(35, 31, 32)","label-secondary font color is not as per the spec");		
 	}
+	
 	
 	@AfterClass
 	public void tearDown(){
