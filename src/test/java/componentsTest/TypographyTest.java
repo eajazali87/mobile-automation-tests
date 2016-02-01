@@ -27,7 +27,7 @@ public class TypographyTest {
 		cap.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
 		cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.2");
 		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 6");
-		cap.setCapability("appiumVersion", "1.4.8");
+		cap.setCapability("appiumVersion", "1.4");
 		cap.setCapability(CapabilityType.BROWSER_NAME, "safari");
 		driver = new IOSDriver(sauceUrl,cap);
 	}
