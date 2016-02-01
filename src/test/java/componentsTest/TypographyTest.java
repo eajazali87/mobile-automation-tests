@@ -45,7 +45,7 @@ public class TypographyTest {
 		
 		//Secondary Label
 		String secLableColor = driver.findElement(By.id("label-secondary")).getCssValue("color");
-		Assert.assertEquals(secLableColor, "rgb(35, 31, 32)","label-secondary font color is not as per the spec");		
+		Assert.assertEquals(secLableColor, "rgba(86, 86, 86, 1)","label-secondary font color is not as per the spec");		
 	}
 	
 	
