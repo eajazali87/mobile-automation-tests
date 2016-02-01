@@ -32,6 +32,7 @@ public class TypographyTest {
 		
 		driver.get("https://console.pearson.com/signin");
 		
-	    driver.quit();		
+	    driver.close();
+		driver.quit();
 	}
 }
