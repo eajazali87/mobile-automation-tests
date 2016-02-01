@@ -25,7 +25,7 @@ public class TypographyTest {
 		cap=new DesiredCapabilities();
 		cap.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
 		cap.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
-		cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1");
+		cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "8.4");
 		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
 		cap.setCapability("appiumVersion", "1.3.4");
 		cap.setCapability(CapabilityType.BROWSER_NAME, "safari");
