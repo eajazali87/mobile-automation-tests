@@ -5,22 +5,25 @@ import io.appium.java_client.remote.MobileCapabilityType;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
+import com.saucelabs.common.SauceOnDemandAuthentication;
+
 public class TypographyTest {
 	IOSDriver driver;
 	DesiredCapabilities cap;
-	public static URL sauceUrl;
+	final String USERNAME = System.getenv("SAUCE_USERNAME");
+	final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+	SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME, ACCESS_KEY);
+	URL sauceUrl;
+	
 	
 	@BeforeClass
 	public void beforeClass() throws MalformedURLException{
-		
-		final String USERNAME = System.getenv("SAUCE_USERNAME");
-		final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
-		sauceUrl = new URL("http://" + USERNAME + ":"+ ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub");
-		
+	    sauceUrl = new URL("http://" + authentication.getUsername() + ":"+ authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub");
 		cap=new DesiredCapabilities();
 		cap.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
 		cap.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
