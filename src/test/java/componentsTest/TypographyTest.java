@@ -6,8 +6,10 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
@@ -32,9 +34,18 @@ public class TypographyTest {
 		driver = new IOSDriver(sauceUrl,cap);
 	}
 	
-	@Test
+	@Test(testName="Labels")
 	public void mobileTest() throws MalformedURLException, InterruptedException{
-		driver.get("http://localhost:8000/src/main/java/fixtures/Typography.html");		
+		driver.get("http://localhost:8000/src/main/java/fixtures/Typography.html");
+		
+		//Label
+		String labelColor = driver.findElement(By.id("label")).getCssValue("color");
+		Assert.assertEquals(labelColor, "rgb(35, 31, 32)");
+		
+		//Secondary Label
+		String secLableColor = driver.findElement(By.id("label-secondary")).getCssValue("color");
+		Assert.assertEquals(secLableColor, "rgb(35, 31, 32)");		
+		
 	}
 	
 	@AfterClass
