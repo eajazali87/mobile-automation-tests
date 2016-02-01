@@ -27,7 +27,7 @@ public class TypographyTest {
 		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
 	    cap.setCapability("appiumVersion", "1.3.4");
 	    
-		cap.setCapability(CapabilityType.BROWSER_NAME, "safari");
+		cap.setCapability(CapabilityType.BROWSER_NAME, "chrome");
 		driver = new IOSDriver(sauceUrl,cap);
 		
 		driver.get("https://console.pearson.com/signin");
