@@ -18,12 +18,10 @@ public class TypographyTest {
 	final String USERNAME = System.getenv("SAUCE_USERNAME");
 	final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
 	SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME, ACCESS_KEY);
-	URL sauceUrl;
 	
-	
-	@BeforeClass
-	public void beforeClass() throws MalformedURLException{
-	    sauceUrl = new URL("http://" + authentication.getUsername() + ":"+ authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub");
+	@BeforeTest
+	public void setUp() throws MalformedURLException{
+		URL sauceUrl = new URL("http://" + authentication.getUsername() + ":"+ authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub");
 		cap=new DesiredCapabilities();
 		cap.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
 		cap.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
@@ -31,10 +29,6 @@ public class TypographyTest {
 		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
 		cap.setCapability("appiumVersion", "1.3.4");
 		cap.setCapability(CapabilityType.BROWSER_NAME, "safari");
-	}
-	
-	@BeforeTest
-	public void setUp(){
 		driver = new IOSDriver(sauceUrl,cap);	
 	}
 	
