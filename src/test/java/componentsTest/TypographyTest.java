@@ -19,7 +19,7 @@ import org.testng.annotations.*;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
 public class TypographyTest {
-	AppiumDriver<WebElement> driver;
+	AppiumDriver driver;
 	DesiredCapabilities cap;
 	final String USERNAME = System.getenv("SAUCE_USERNAME");
 	final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -35,7 +35,7 @@ public class TypographyTest {
 		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 6");
 		cap.setCapability("appiumVersion", "1.4");
 		cap.setCapability(CapabilityType.BROWSER_NAME, "safari");
-		driver = new IOSDriver<WebElement>(sauceUrl,cap);
+		driver = new IOSDriver(sauceUrl,cap);
 		driver.get("http://localhost:8000/src/main/java/fixtures/Typography.html");
 	}
 	
