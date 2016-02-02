@@ -1,5 +1,6 @@
 package componentsTest;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
@@ -7,15 +8,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
 public class TypographyTest {
-	IOSDriver driver;
+	WebDriver driver;
 	DesiredCapabilities cap;
 	final String USERNAME = System.getenv("SAUCE_USERNAME");
 	final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -31,7 +34,7 @@ public class TypographyTest {
 		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 6");
 		cap.setCapability("appiumVersion", "1.4");
 		cap.setCapability(CapabilityType.BROWSER_NAME, "safari");
-		driver = new IOSDriver(sauceUrl,cap);
+		driver = new RemoteWebDriver(sauceUrl,cap);
 		driver.get("http://localhost:8000/src/main/java/fixtures/Typography.html");
 	}
 	
@@ -46,7 +49,7 @@ public class TypographyTest {
 	public void secondaryLabelTest(){
 		//Secondary Label
 		String secLableColor = driver.findElement(By.id("label-secondary")).getCssValue("color");
-		Assert.assertEquals(secLableColor, "rgba(86, 86, 86, 0)","label-secondary font color is not as per the spec");		
+		Assert.assertEquals(secLableColor, "rgba(86, 86, 86, 1)","label-secondary font color is not as per the spec");		
 	}
 	
 	@AfterClass
