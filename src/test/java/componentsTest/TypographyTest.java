@@ -32,22 +32,22 @@ public class TypographyTest {
 		cap.setCapability("appiumVersion", "1.4");
 		cap.setCapability(CapabilityType.BROWSER_NAME, "safari");
 		driver = new IOSDriver(sauceUrl,cap);
+		driver.get("http://localhost:8000/src/main/java/fixtures/Typography.html");
 	}
 	
-	@Test(testName="Labels")
-	public void mobileTest() throws MalformedURLException, InterruptedException{
-		driver.get("http://localhost:8000/src/main/java/fixtures/Typography.html");
-		
+	@Test(testName="Default Label")
+	public void labelTest(){		
 		//Label
 		String labelColor = driver.findElement(By.id("label")).getCssValue("color");
-		System.out.println("labelColor: "+labelColor);
 		Assert.assertEquals(labelColor, "rgba(35, 31, 32, 1)","label font color is not as per the spec");
-		
+	}
+	
+	@Test(testName="Secondary Label")
+	public void secondaryLabelTest(){
 		//Secondary Label
 		String secLableColor = driver.findElement(By.id("label-secondary")).getCssValue("color");
 		Assert.assertEquals(secLableColor, "rgba(86, 86, 86, 1)","label-secondary font color is not as per the spec");		
 	}
-	
 	
 	@AfterClass
 	public void tearDown(){
