@@ -1,6 +1,7 @@
 package componentsTest;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
@@ -31,11 +32,11 @@ public class TypographyTest {
 		cap=new DesiredCapabilities();
 		cap.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
 		cap.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
-		cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.2");
-		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 6");
+		cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "4.4.4");
+		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Nexus 5");
 		cap.setCapability("appiumVersion", "1.4");
-		cap.setCapability(CapabilityType.BROWSER_NAME, "safari");
-		driver = new IOSDriver(sauceUrl,cap);
+		cap.setCapability(CapabilityType.BROWSER_NAME, "");
+		driver = new AndroidDriver(sauceUrl,cap);
 		driver.get("http://localhost:8000/src/main/java/fixtures/Typography.html");
 	}
 	
