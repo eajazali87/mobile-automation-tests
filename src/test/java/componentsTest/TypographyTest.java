@@ -2,6 +2,7 @@ package componentsTest;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
@@ -20,7 +21,7 @@ import org.testng.annotations.*;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
 public class TypographyTest {
-	AppiumDriver driver;
+	AppiumDriver<AndroidElement> driver;
 	DesiredCapabilities cap;
 	final String USERNAME = System.getenv("SAUCE_USERNAME");
 	final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -33,10 +34,10 @@ public class TypographyTest {
 		cap.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
 		cap.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
 		cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "4.4");
-		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Google Nexus 7C Emulator");
+		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
 		cap.setCapability("appiumVersion", "1.4");
-		cap.setCapability(CapabilityType.BROWSER_NAME, "chromium");
-		driver = new AndroidDriver(sauceUrl,cap);
+		cap.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+		driver = new AndroidDriver<AndroidElement>(sauceUrl,cap);
 		driver.get("http://localhost:8000/src/main/java/fixtures/Typography.html");
 	}
 	
