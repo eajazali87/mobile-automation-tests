@@ -32,8 +32,8 @@ public class TypographyTest {
 		cap=new DesiredCapabilities();
 		cap.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
 		cap.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
-		cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "5.0");
-		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
+		cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "4.1");
+		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Google Nexus 7C Emulator");
 		cap.setCapability("appiumVersion", "1.4");
 		cap.setCapability(CapabilityType.BROWSER_NAME, "chrome");
 		driver = new AndroidDriver(sauceUrl,cap);
