@@ -35,7 +35,7 @@ public class TypographyTest {
 		cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "4.1");
 		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Google Nexus 7C Emulator");
 		cap.setCapability("appiumVersion", "1.4");
-		cap.setCapability(CapabilityType.BROWSER_NAME, "chromium");
+		cap.setCapability(CapabilityType.BROWSER_NAME, "chrome");
 		driver = new AndroidDriver(sauceUrl,cap);
 		driver.get("http://localhost:8000/src/main/java/fixtures/Typography.html");
 	}
