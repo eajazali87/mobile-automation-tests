@@ -21,14 +21,14 @@ import com.saucelabs.common.SauceOnDemandAuthentication;
 public class TypographyTest {
 	AppiumDriver driver;
 	DesiredCapabilities cap;
-	final String USERNAME = System.getenv("SAUCE_USERNAME");
+	/*final String USERNAME = System.getenv("SAUCE_USERNAME");
 	final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
-	SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME, ACCESS_KEY);
+	SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME, ACCESS_KEY);*/
 	
 	@BeforeTest
 	public void setUp() throws MalformedURLException{
-		URL sauceUrl = new URL("http://" + authentication.getUsername() + ":"+ authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub");
-		cap=new DesiredCapabilities();
+		/*URL sauceUrl = new URL("http://" + authentication.getUsername() + ":"+ authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub");
+		cap=new DesiredCapabilities();*/
 		/*cap.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
 		cap.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
 		cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.2");
