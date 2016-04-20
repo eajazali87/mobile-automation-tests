@@ -2,6 +2,7 @@ language: java
 script:
 - chmod 777 src/test/run_tests.sh
 - src/test/run_tests.sh
+
 before_script:
 - python -m SimpleHTTPServer &
 env:
