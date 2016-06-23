@@ -6,12 +6,8 @@ echo "Trigger the Selenium tests for master branch: ux-test-platform repo...."
 body='{
 "request": {
   "message": "Override the commit message: this is an api request",
-  "branch":"des-344",
-  "config": {
-    "env": {
-      "matrix": ["TEST_SUITE=elements_sdk.xml"]
-    },
-    "script": "mvn test"
+  "branch":"des-344",  
+  "script": "mvn test"
   }
 }}'
 
