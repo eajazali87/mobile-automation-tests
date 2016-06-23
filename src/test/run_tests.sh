@@ -9,7 +9,7 @@ body='{
   "branch":"des-344",
   "config": {
     "env": {
-      "matrix": ["TEST=elements_sdk.xml"]
+      "matrix": ["TEST_SUITE=elements_sdk.xml"]
     },
     "script": "echo FOO"
   }
