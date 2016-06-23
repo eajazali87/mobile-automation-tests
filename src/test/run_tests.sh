@@ -8,7 +8,7 @@ body='{
   "message": "Override the commit message: this is an api request",
   "branch":"des-344",
   "config": {
-    "en": {
+    "env": {
       "matrix": ["TEST_SUITE=elements_sdk.xml"]
     }    
   }
