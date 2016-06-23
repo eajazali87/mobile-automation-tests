@@ -8,11 +8,11 @@ body='{
   "message": "Override the commit message: this is an api request",
   "branch":"des-344",
   "config": {
-    "script": [
-      {"chmod 777 ./src/main/shell_scripts/elements.sh"},
-      {"./src/main/shell_scripts/elements.sh"},
-      }"mvn -Dtestfile=elements_sdk.xml test"}
-    ]
+     "script":[  
+            "chmod 777 ./src/main/shell_scripts/elements.sh",
+            "./src/main/shell_scripts/elements.sh",
+            "mvn -Dtestfile=elements_sdk.xml test"
+         ]
   }
 }}'
 
