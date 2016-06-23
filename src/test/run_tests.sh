@@ -6,10 +6,14 @@ echo "Trigger the Selenium tests for master branch: ux-test-platform repo...."
 body='{
 "request": {
   "message": "Override the commit message: this is an api request",
-  "branch":"des-344",  
-  "script": "echo FOO"
+  "branch":"des-344",
+  "config": {
+    "env": {
+      "matrix": ["TEST=unit"]
+    },
+    "script": "echo FOO"
   }
-}'
+}}'
 
 curl -s -X POST \
   -H "Content-Type: application/json" \
