@@ -8,7 +8,7 @@ body='{
   "message": "Override the commit message: this is an api request",
   "branch":"des-344",
   "config": {
-    "script": "echo -Dtestfile=elements_sdk.xml"
+    "script": "mvn -Dtestfile=elements_sdk.xml test"
   }
 }}'
 
