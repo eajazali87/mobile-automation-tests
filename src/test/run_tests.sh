@@ -9,7 +9,7 @@ body='{
   "branch":"des-344",  
   "script": "mvn test"
   }
-}}'
+}'
 
 curl -s -X POST \
   -H "Content-Type: application/json" \
