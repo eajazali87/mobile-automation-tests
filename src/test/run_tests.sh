@@ -10,7 +10,8 @@ body='{
   "config": {
     "env": {
       "matrix": ["TEST_SUITE=elements_sdk.xml"]
-    }    
+    },
+    "script": "mvn test"
   }
 }}'
 
