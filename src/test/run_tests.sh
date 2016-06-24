@@ -9,7 +9,7 @@ body='{
   "branch":"des-344",
   "config": {      
      "script": [
-     "export FOO=bar",
+     "export FOO=elements",
      "echo $FOO",
      "chmod 777 ./src/main/shell_scripts/elements.sh",
      "./src/main/shell_scripts/elements.sh",
