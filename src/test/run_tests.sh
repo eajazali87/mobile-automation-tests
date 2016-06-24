@@ -9,10 +9,10 @@ body='{
   "branch":"des-344",
   "config": {      
      "script": [
-     "FOO=bar",
+     "export FOO=bar",
      "echo $FOO",
      "chmod 777 ./src/main/shell_scripts/elements.sh",
-     "./src/main/shell_scripts/elements.sh $1",
+     "./src/main/shell_scripts/elements.sh",
      "mvn -Dtestfile=elements_sdk.xml test"
      ]
   }
