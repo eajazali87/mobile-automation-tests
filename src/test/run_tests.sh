@@ -12,7 +12,7 @@ body='{
      "FOO=bar",
      "echo $FOO",
      "chmod 777 ./src/main/shell_scripts/elements.sh",
-     "./src/main/shell_scripts/elements.sh $FOO",
+     "./src/main/shell_scripts/elements.sh $1",
      "mvn -Dtestfile=elements_sdk.xml test"
      ]
   }
