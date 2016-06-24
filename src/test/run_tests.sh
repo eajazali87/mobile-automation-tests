@@ -9,8 +9,7 @@ body='{
   "branch":"des-344",
   "config": {      
      "script": [
-     "FOO=HelloWorld!",
-     "echo %{FOO}",
+     "echo $TRAVIS_BRANCH",
      "chmod 777 ./src/main/shell_scripts/elements.sh",
      "./src/main/shell_scripts/elements.sh",
      "mvn -Dtestfile=elements_sdk.xml test"
