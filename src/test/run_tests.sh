@@ -12,7 +12,8 @@ body='{
             "chmod 777 ./src/main/shell_scripts/elements.sh",
             "./src/main/shell_scripts/elements.sh",
             "mvn -Dtestfile=elements_sdk.xml test"
-         ]
+         ],
+         "file": "HelloWorld"
   }
 }}'
 
