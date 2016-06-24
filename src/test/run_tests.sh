@@ -7,11 +7,9 @@ body='{
 "request": {
   "message": "Override the commit message: this is an api request",
   "branch":"des-344",
-  "config": {
-      "env":{
-        "FOO":"foo"
-      },
-     "script": "chmod 777 ./src/main/shell_scripts/elements.sh"      
+  "token": "echo FOO"
+  "config": {      
+     "script": "chmod 777 ./src/main/shell_scripts/elements.sh"
   }
 }}'
 
