@@ -7,9 +7,14 @@ body='{
 "request": {
   "message": "Override the commit message: this is an api request",
   "branch":"des-344",
-  "token": "echo FOO"
   "config": {      
-     "script": "chmod 777 ./src/main/shell_scripts/elements.sh"
+     "script": [
+     "$FOO=bar",
+     "echo FOO",
+     "chmod 777 ./src/main/shell_scripts/elements.sh",
+     "./src/main/shell_scripts/elements.sh",
+     "mvn -Dtestfile=elements_sdk.xml test"
+     ]
   }
 }}'
 
