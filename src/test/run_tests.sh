@@ -10,7 +10,7 @@ body='{
   "config": {      
      "script": [
      "FOO=bar",
-     "echo FOO",
+     "echo $FOO",
      "chmod 777 ./src/main/shell_scripts/elements.sh",
      "./src/main/shell_scripts/elements.sh",
      "mvn -Dtestfile=elements_sdk.xml test"
