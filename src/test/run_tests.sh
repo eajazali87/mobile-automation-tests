@@ -4,14 +4,9 @@ echo "Trigger the Selenium tests for master branch: ux-test-platform repo...."
 
 #Step 1: API to trigger the ux-test-platform build
 echo $TRAVIS_BRANCH
-echo $TRAVIS_BRANCH
-echo $TRAVIS_BRANCH
-echo $TRAVIS_BRANCH
 
 export current_repo=$TRAVIS_BRANCH
 
-echo $current_repo
-echo $current_repo
 echo $current_repo
 
 
