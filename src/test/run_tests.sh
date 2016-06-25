@@ -15,7 +15,7 @@ body='{
      "script": [
      "export component=elements_sdk",
      "echo $component",
-     "export calling_repo=${current_repo}",
+     "export calling_repo=$TRAVIS_BRANCH",
      "echo calling_repo",
      "chmod 777 ./src/main/shell_scripts/components.sh",
      "./src/main/shell_scripts/components.sh",
