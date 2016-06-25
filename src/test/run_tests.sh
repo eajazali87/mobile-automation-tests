@@ -3,12 +3,9 @@
 echo "Trigger the Selenium tests for master branch: ux-test-platform repo...."
 
 #Step 1: API to trigger the ux-test-platform build
-echo $TRAVIS_BRANCH
-
 export current_repo=$TRAVIS_BRANCH
-
 echo $current_repo
-
+echo $current_repo
 
 body='{
 "request": {
@@ -18,7 +15,7 @@ body='{
      "script": [
      "export component=elements_sdk",
      "echo $component",
-     "export calling_repo=$current_repo",
+     "export calling_repo=${current_repo}",
      "echo calling_repo",
      "chmod 777 ./src/main/shell_scripts/components.sh",
      "./src/main/shell_scripts/components.sh",
@@ -115,4 +112,5 @@ fi
 
 true $(( i++ ))
 sleep 1 #This 1s is required to poll the build status for every second
+echo "counter-> $i"
 done
