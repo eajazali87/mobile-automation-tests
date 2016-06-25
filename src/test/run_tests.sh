@@ -3,17 +3,31 @@
 echo "Trigger the Selenium tests for master branch: ux-test-platform repo...."
 
 #Step 1: API to trigger the ux-test-platform build
+echo $TRAVIS_BRANCH
+echo $TRAVIS_BRANCH
+echo $TRAVIS_BRANCH
+echo $TRAVIS_BRANCH
+
+export current_repo=$TRAVIS_BRANCH
+
+echo $current_repo
+echo $current_repo
+echo $current_repo
+
+
 body='{
 "request": {
   "message": "Override the commit message: this is an api request",
   "branch":"des-344",
   "config": {      
      "script": [
-     "export FOO=elements",
-     "echo $FOO",
-     "chmod 777 ./src/main/shell_scripts/elements.sh",
-     "./src/main/shell_scripts/elements.sh",
-     "mvn -Dtestfile=elements_sdk.xml test"
+     "export component=elements_sdk",
+     "echo $component",
+     "export calling_repo=$current_repo",
+     "echo calling_repo",
+     "chmod 777 ./src/main/shell_scripts/components.sh",
+     "./src/main/shell_scripts/components.sh",
+     "mvn -Dtest_suite_xml=elements_sdk.xml test"
      ]
   }
 }}'
@@ -44,17 +58,17 @@ do
   get_state_value=${BRANCH#*:}
   BRANCH="${get_state_value//\"}"
 
-	if [ $BRANCH == "des-344" ] #If conditon to check if the last triggered build is master
+  if [ $BRANCH == "master" ] #If conditon to check if the last triggered build is master
     sleep 5
     curl -i $REPO_URI > test.json
-	then LATEST_ID=$(grep -o '"id":.[0-9]*' test.json | head -1  | grep ':.[0-9]*') #
-	echo "LATEST_ID of des-344 branch.............................. $LATEST_ID"
+  then LATEST_ID=$(grep -o '"id":.[0-9]*' test.json | head -1  | grep ':.[0-9]*') #
+  echo "LATEST_ID of master branch.............................. $LATEST_ID"
   export LATEST_ID
-  	break 
-	else 	
-		true $(( i++ ))
-		sleep 1
-	fi
+    break 
+  else  
+    true $(( i++ ))
+    sleep 1
+  fi
 done
 
 #Step 2 : Fetch the build status of the 'master' branch
