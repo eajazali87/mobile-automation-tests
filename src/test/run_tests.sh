@@ -7,22 +7,18 @@ export current_repo=$TRAVIS_BRANCH
 echo $current_repo
 echo $current_repo
 
-body='{
-"current_repo":"master",
-"request": {
-  "message": "Override the commit message: this is an api request",
-  "branch":"des-344",
-  "config": {      
-     "script": [
-     "export component=elements_sd",
-     "echo $component",
-     "echo $current_repo",
-     "chmod 777 ./src/main/shell_scripts/components.sh",
-     "./src/main/shell_scripts/components.sh",
-     "mvn -Dtest_suite_xml=elements_sdk.xml test"
-     ]
-  }
-}}'
+body="{
+\"request\": {
+\"message\": \"Override the commit message: this is an api request\",
+\"branch\":\"des-344\",
+\"config\": {
+\"script\": [
+\"echo FOO\",
+\"export calling_repo=$TRAVIS_BRANCH\",
+\"echo $calling_repo\"
+]
+}
+}}"
 
 curl -s -X POST \
   -H "Content-Type: application/json" \
