@@ -15,7 +15,7 @@ body="{
 \"script\": [
 \"echo FOO\",
 \"export calling_repo=$TRAVIS_BRANCH\",
-\"echo $calling_repo\"
+\"echo calling_repo\"
 ]
 }
 }}"
