@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "Trigger the Selenium tests for master branch: ux-test-platform repo...."
 
@@ -15,7 +15,7 @@ body="{
 \"script\": [
 \"echo FOO\",
 \"export calling_repo=$TRAVIS_BRANCH\",
-\"echo calling_repo\"
+\"echo $calling_repo\"
 ]
 }
 }}"
