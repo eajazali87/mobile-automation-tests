@@ -15,7 +15,9 @@ body="{
 \"script\": [
 \"echo FOO\",
 \"export calling_repo=$TRAVIS_BRANCH\",
-\"echo $calling_repo\"
+\"echo $calling_repo\",
+\"chmod 777 ./src/main/shell_scripts/components.sh\",
+\"./src/main/shell_scripts/components.sh\"
 ]
 }
 }}"
