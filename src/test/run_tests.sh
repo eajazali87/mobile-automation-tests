@@ -1,12 +1,22 @@
 #!/bin/bash
 
-echo "Trigger the Selenium tests: ux-test-plaftorm repo...."
+echo "Trigger the Selenium tests for master branch: ux-test-platform repo...."
 
-#API to trigger the ux-test-platform build
-body='{
-"request": {
-  "branch":"master"
-}}'
+#Step 1: API to trigger the ux-test-platform build with the below config
+body="{
+\"request\": {
+\"message\": \"feat(elements): Run Elements SDK Tests\",
+\"branch\":\"master\",
+\"config\": {
+\"script\": [
+\"export component=elements_sdk\",
+\"export feature_branch=$TRAVIS_BRANCH\",
+\"chmod 777 ./src/main/shell_scripts/components.sh\",
+\"./src/main/shell_scripts/components.sh\",
+\"mvn -Dtest_suite_xml=elements_sdk.xml test\"
+]
+}
+}}"
 
 curl -s -X POST \
   -H "Content-Type: application/json" \
@@ -25,21 +35,21 @@ i=1
 max=20
 while [ $i -lt $max ]
 do  
-  curl -i $REPO_URI > test.json
+  curl -i $REPO_URI > test.json #Push the json response to a temp file 'test.json'
 
-  LATEST_STATE=$(grep -o '"state":.[a-z\"]*' test.json | head -1 )
-  LATEST_ID=$(grep -o '"id":.[0-9]*' test.json | head -1  | grep ':.[0-9]*')
-  BRANCH=$(grep -o '"branch":.[a-z\"]*' test.json | head -1 )
+  LATEST_STATE=$(grep -o '"state":.[a-z\"]*' test.json | head -1 ) #Fetch the state of the last build
+  LATEST_ID=$(grep -o '"id":.[0-9]*' test.json | head -1  | grep ':.[0-9]*') #Fetch the id of the last build
+  BRANCH=$(grep -o '"branch":.[a-z\"]*' test.json | head -1 ) #Fetch the branch name of the last build
 
   get_state_value=${BRANCH#*:}
   BRANCH="${get_state_value//\"}"
 
-	if [ $BRANCH == "master" ] #To fetch the latest master branch build id
+	if [ $BRANCH == "master" ] #If condition to check if the last triggered build is master
     sleep 5
     curl -i $REPO_URI > test.json
-	then LATEST_ID=$(grep -o '"id":.[0-9]*' test.json | head -1  | grep ':.[0-9]*')
+	then LATEST_ID=$(grep -o '"id":.[0-9]*' test.json | head -1  | grep ':.[0-9]*') #
 	echo "LATEST_ID of master branch.............................. $LATEST_ID"
-  export LATEST_ID	
+  export LATEST_ID
   	break 
 	else 	
 		true $(( i++ ))
@@ -47,8 +57,7 @@ do
 	fi
 done
 
-################################################################################################################################
-
+#Step 2 : Fetch the build status of the 'master' branch
 get_buildId_value=${LATEST_ID#*:}
 BUILD_ID="${get_buildId_value//\"}"
 
@@ -56,19 +65,19 @@ REPO_URI_WITH_BUILDID="$REPO_URI/$BUILD_ID"
 echo $REPO_URI_WITH_BUILDID
 
 i=1
-max=600 #Max time for the tests to run
+max=900 #Max time for the tests to run.
 while [ $i -lt $max ]
 do
 
 curl -i $REPO_URI_WITH_BUILDID > test.json 
 
-STATE=$(grep -o '"state":.[a-z\"]*' test.json | head -1 )
-#RESULT=$(grep -o '"result":.[0-9]*' test.json | head -1  | grep ':.[0-9]*')
-STATUS=$(grep -o '"status":.[0-9]*' test.json | head -1  | grep ':.[0-9]*')
+STATE=$(grep -o '"state":.[a-z\"]*' test.json | head -1 ) #Fetch the state of master build
+#RESULT=$(grep -o '"result":.[0-9]*' test.json | head -1  | grep ':.[0-9]*') #For debug
+STATUS=$(grep -o '"status":.[0-9]*' test.json | head -1  | grep ':.[0-9]*') #Fetch the status of master build
 
 echo "--------------------------------------------"
 echo "Polling for the tests run build status..."
-echo "ux-test-platform build id in run is: $BUILD_ID"
+echo "ux-test-platform build run in progress: https://travis-ci.org/Pearson-Higher-Ed/ux-test-platform/builds/$BUILD_ID"
 
 get_state_value=${STATE#*:}
 STATE="${get_state_value//\"}"
@@ -76,25 +85,26 @@ STATE="${get_state_value//\"}"
 get_status_value=${STATUS#*:}
 STATUS="${get_status_value//\"}"
 
-if [ $STATUS == "0" ]
+if [ $STATUS == "0" ] #Success condition
 then
   echo "counter-> $i"
   echo "TESTS RUN... PASSED :-) "
   break #As soon as the tests run pass, we break and return back to the elements build run
-elif [ $STATUS == "1" ]
+elif [ $STATUS == "1" ] #Failure condition
 then
  echo "TESTS RUN... FAILED :-("
  exit 1 #As soon as the tests run fail, we stop building elements
-elif [[ $STATE == "finished" && $STATUS == "n" ]]
+elif [[ $STATE == "finished" && $STATUS == "n" ]] #Unexpected failure due to Travis environment issues
 then
  echo "TESTS RUN... NULL :-("
- exit 1 #For some reason, if the ux-test-platform build breaks or halts.
-elif [ $i == "600" ]
+ exit 1 #For some reason, if the ux-test-platform build breaks or halts
+elif [ $i == "900" ] #Maxed out condition
   then
-  echo "ux-test-platform run time has maxd out..."
+  echo "ux-test-platform run time has maxed out..."
   exit 1 #Selenium tests run for more than the max time.
 fi
 
 true $(( i++ ))
 sleep 1 #This 1s is required to poll the build status for every second
+echo "counter-> $i"
 done
