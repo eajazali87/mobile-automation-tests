@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "Trigger the Selenium tests for master branch: ux-test-platform repo...."
 
